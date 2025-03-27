@@ -64,6 +64,7 @@ void * prevList(List * list) {
 }
 
 void pushFront(List * list, void * data) {
+    if(list->head == NULL) EXIT_FAILURE;
     Node* nuevo = createNode(data);
     list->current = list->head;
     nuevo->next = list->current;
