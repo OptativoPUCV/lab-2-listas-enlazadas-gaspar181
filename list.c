@@ -110,7 +110,20 @@ void * popBack(List * list) {
 }
 
 void * popCurrent(List * list) {
-    return NULL;
+    void* aux = list->current->data;
+    if(list->current->next == NULL){
+        free(list->current);
+        list->current = NULL;
+    }
+    else{
+        Node* auxIzq = list->current->prev;
+        Node* auxDer = list->current->next;
+        auxIzq->next = auxDer;
+        auxDer->prev = auxIzq;
+        free(list->current);
+        list->current = auxDer;
+    }
+    return aux;
 }
 
 void cleanList(List * list) {
